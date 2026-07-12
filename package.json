@@ -1,0 +1,13 @@
+{
+  "name": "ngoc-writing-review-lab-gemini",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Standalone VSTEP Writing practice web with offline and Gemini AI feedback.",
+  "dependencies": {
+    "@google/genai": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

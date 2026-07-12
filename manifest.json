@@ -1,0 +1,9 @@
+{
+  "name": "Ngọc Writing Review Lab",
+  "short_name": "Writing Review",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fff8fb",
+  "theme_color": "#d96b93",
+  "description": "Website riêng luyện 7 bộ đề Writing VSTEP mới tháng 7."
+}

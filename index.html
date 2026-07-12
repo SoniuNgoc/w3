@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#d96b93">
+  <meta name="description" content="Ngọc Writing Review Lab — website riêng gồm 7 bộ đề Writing VSTEP mới, có bấm giờ, lưu nháp, sửa bài offline và AI song ngữ.">
+  <title>Ngọc Writing Review Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <script>
+    try {
+      if (localStorage.getItem("ngoc-writing-review-theme") === "dark") {
+        document.documentElement.dataset.theme = "dark";
+      }
+    } catch (_) {}
+  </script>
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <header class="topbar">
+    <button class="brand" id="brandBtn" aria-label="Về trang chủ">
+      <span class="brand-mark">N</span>
+      <span><strong>Ngọc Writing Review Lab</strong><small>Đề mới tháng 7 · VSTEP B1–B2</small></span>
+    </button>
+    <nav class="main-nav" aria-label="Điều hướng chính">
+      <button class="nav-btn active" data-page="home">Trang chủ</button>
+      <button class="nav-btn" data-page="tests">Bộ đề mới</button>
+      <button class="nav-btn" data-page="practice">Phòng thi</button>
+    </nav>
+    <button class="progress-btn" id="progressBtn">Tiến độ</button>
+    <button class="theme-btn" id="themeBtn" aria-label="Đổi giao diện" title="Đổi giao diện">◐</button>
+  </header>
+
+  <main>
+    <section id="homeView" class="page-view">
+      <div class="hero shell">
+        <div class="hero-copy">
+          <span class="eyebrow">WEBSITE RIÊNG · NỘI DUNG MỚI</span>
+          <h1>Luyện Writing VSTEP<br><span>theo đúng đề mới tháng 7</span></h1>
+          <p><strong>7 bộ đề riêng</strong>, đủ Task 1 và Task 2, đồng hồ 60 phút, đếm từ, lưu bản nháp và sửa bài Anh – Việt bằng Gemini AI.</p>
+          <div class="hero-actions">
+            <button class="btn primary" id="quickStartBtn">Bắt đầu đề review mới</button>
+            <button class="btn secondary" id="chooseTestBtn">Xem 7 bộ đề</button>
+          </div>
+          <div class="trust-row">
+            <span>✓ Task 1: 20 phút · ≥120 từ</span>
+            <span>✓ Task 2: 40 phút · ≥250 từ</span>
+            <span>✓ Offline trước · AI sau</span>
+          </div>
+        </div>
+
+        <div class="hero-panel card">
+          <div class="new-ribbon">NỘI DUNG MỚI 07/2026</div>
+          <div class="mini-head"><span>PAPER 3. WRITING</span><strong>60:00</strong></div>
+          <div class="mini-part active"><b>01</b><div><strong>Letter / Email</strong><small>Moving service · neighbourhood</small></div><span>20’</span></div>
+          <div class="mini-part"><b>02</b><div><strong>Essay</strong><small>Sharing life on social media</small></div><span>40’</span></div>
+          <div class="mini-lines"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="mini-feedback"><span>AI</span><div><b>Sửa bài song ngữ</b><small>Đủ ý · bố cục · từ vựng · ngữ pháp</small></div></div>
+        </div>
+      </div>
+
+      <section class="shell section-block">
+        <div class="section-title"><div><span class="eyebrow">TÍNH NĂNG</span><h2>Giữ đầy đủ chức năng của web Writing trước</h2></div></div>
+        <div class="feature-grid">
+          <article class="feature card"><span>01</span><h3>Đề và bản dịch</h3><p>Đề Anh – Việt, yêu cầu bắt buộc, dàn ý và bài mẫu theo từng Task.</p></article>
+          <article class="feature card"><span>02</span><h3>Phòng thi thật</h3><p>Bấm giờ 20/40 phút hoặc thi trọn 60 phút, đếm từ và tự động lưu nháp.</p></article>
+          <article class="feature card"><span>03</span><h3>AI sửa chi tiết</h3><p>Chấm đủ ý, bố cục, từ vựng, ngữ pháp; chỉ rõ lỗi, bản sửa và bản dịch Việt.</p></article>
+        </div>
+      </section>
+
+      <section class="shell section-block info-band">
+        <div><span class="eyebrow">NỘI DUNG RIÊNG</span><h2>Không trộn với 12 bộ đề của web cũ</h2><p>Web này chỉ chứa những chủ đề vừa chọn lọc: chuyển nhà, mạng xã hội, mua sắm trực tuyến, xe máy, sách giáo khoa, học sau đại học, đô thị hóa và cấm hút thuốc.</p></div>
+        <button class="btn primary" id="openNewestBtn">Mở đề mới nhất</button>
+      </section>
+    </section>
+
+    <section id="testsView" class="page-view hidden">
+      <div class="shell library-page">
+        <div class="page-heading">
+          <div><span class="eyebrow">7 BỘ ĐỀ RIÊNG</span><h1>Ngân hàng đề mới tháng 7</h1><p>Mỗi bộ gồm một Task 1 và một Task 2. Bộ đầu tiên được tái dựng từ review thí sinh.</p></div>
+          <button class="btn primary" id="randomBtn">Chọn ngẫu nhiên</button>
+        </div>
+        <div class="library-toolbar">
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Tìm theo chủ đề..."></label>
+          <select id="categoryFilter" aria-label="Lọc chủ đề"></select>
+        </div>
+        <div id="testLibrary" class="test-library"></div>
+      </div>
+    </section>
+
+    <section id="practiceView" class="page-view hidden">
+      <div class="practice-layout">
+        <aside class="sidebar" id="sidebar">
+          <div class="sidebar-head"><div><span class="eyebrow">QUESTION BANK</span><h2>7 bộ đề mới</h2></div><button class="mobile-close" id="closeSidebarBtn">×</button></div>
+          <div class="sidebar-stats">
+            <div><strong id="doneCount">0</strong><span>bài đã nộp</span></div>
+            <div><strong id="draftCount">0</strong><span>bản nháp</span></div>
+            <div><strong>7</strong><span>bộ đề</span></div>
+          </div>
+          <nav id="topicNav" class="topic-nav"></nav>
+          <p class="sidebar-note">Bản nháp được lưu riêng trên thiết bị này. Web cũ không bị ảnh hưởng.</p>
+        </aside>
+
+        <div class="workspace">
+          <div class="mobile-bar">
+            <button class="menu-btn" id="openSidebarBtn">☰</button>
+            <button class="back-btn" id="backToTestsBtn">← Chọn đề khác</button>
+          </div>
+
+          <section class="workspace-head">
+            <div>
+              <p id="breadcrumb" class="breadcrumb"></p>
+              <h1 id="setTitle">Writing Review</h1>
+              <button class="text-link" id="toggleSetTranslation">Xem tên tiếng Việt</button>
+              <p id="setTitleVi" class="muted hidden"></p>
+            </div>
+            <div class="workspace-controls">
+              <button class="ghost-btn" id="examModeBtn">⏱ <span id="modeLabel">Luyện từng phần</span></button>
+              <button class="ghost-btn" id="formHelpBtn">? Nhận biết form</button>
+              <div id="sharedTimerCard" class="shared-timer hidden"><span>Thi trọn bài</span><strong id="sharedTimer">60:00</strong><button id="sharedTimerToggle">Bắt đầu</button></div>
+            </div>
+          </section>
+
+          <section class="part-switcher">
+            <button class="part-tab active" data-part="task1"><span>01</span><div><strong>Writing Task 1</strong><small>Letter / Email · 20 phút · ≥120 từ</small></div><i id="statusTask1"></i></button>
+            <button class="part-tab" data-part="task2"><span>02</span><div><strong>Writing Task 2</strong><small>Essay · 40 phút · ≥250 từ</small></div><i id="statusTask2"></i></button>
+          </section>
+
+          <section class="study-grid">
+            <div class="left-column">
+              <article class="prompt-card card">
+                <div class="card-title-row">
+                  <div><span class="eyebrow" id="taskType"></span><h2 id="taskTitle"></h2></div>
+                  <div class="badges"><span id="timeBadge"></span><span id="wordBadge"></span></div>
+                </div>
+                <div id="promptText" class="prompt-text"></div>
+                <div id="recognitionPanel" class="recognition-panel hidden"></div>
+                <div id="requirements" class="requirements"></div>
+                <div class="prompt-actions">
+                  <button class="text-link" id="togglePromptVi">Xem bản dịch đề</button>
+                  <button class="text-link" id="toggleOutline">Gợi ý lập dàn ý</button>
+                </div>
+                <div id="promptVi" class="helper hidden"></div>
+                <div id="outlinePanel" class="helper hidden"></div>
+              </article>
+
+              <article class="editor-card card">
+                <div class="editor-toolbar">
+                  <div class="timer-box"><span>Thời gian còn lại</span><strong id="partTimer">20:00</strong><button id="timerToggle">Bắt đầu</button><button id="timerReset" title="Đặt lại">↺</button></div>
+                  <div class="editor-stats"><span><b id="wordCount">0</b> từ</span><span><b id="charCount">0</b> ký tự</span><span id="saveStatus">Chưa có nội dung</span></div>
+                </div>
+                <textarea id="answerBox" spellcheck="true" placeholder="Write your answer here...
+
+Bài được lưu tự động."></textarea>
+                <div class="word-progress"><span id="wordProgressBar"></span></div>
+                <div class="editor-actions">
+                  <div><button class="btn small secondary" id="clearBtn">Xóa bài</button><button class="btn small secondary" id="copyBtn">Sao chép</button></div>
+                  <button class="btn primary" id="submitBtn">Nộp bài và xem sửa lỗi →</button>
+                </div>
+              </article>
+            </div>
+
+            <aside class="right-column">
+              <article class="card side-card"><span class="eyebrow">CHECKLIST</span><h3>Trước khi nộp</h3><div id="liveChecklist"></div></article>
+              <article class="card side-card"><div class="side-card-head"><div><span class="eyebrow">USEFUL LANGUAGE</span><h3>Cụm từ hữu ích</h3></div><button id="shufflePhrases">↻</button></div><div id="phraseList"></div></article>
+            </aside>
+          </section>
+
+          <section id="resultSection" class="result-section hidden">
+            <div class="result-heading">
+              <div><span class="eyebrow">KẾT QUẢ BÀI LÀM</span><h2>Sửa bài song ngữ</h2><p id="reviewEngineLabel" class="muted"></p></div>
+              <div class="result-head-actions"><button class="btn small secondary hidden" id="retryAiBtn">Chấm lại bằng AI</button><button class="btn small secondary" id="closeResultBtn">Thu gọn</button></div>
+            </div>
+            <div id="scoreGrid" class="score-grid"></div>
+            <div class="result-tabs">
+              <button class="result-tab active" data-result="overview">Tổng quan</button>
+              <button class="result-tab" data-result="errors">Lỗi và cách sửa</button>
+              <button class="result-tab" data-result="corrected">Bản sửa tiếng Anh</button>
+              <button class="result-tab" data-result="translation">Bản dịch tiếng Việt</button>
+              <button class="result-tab" data-result="model">Bài mẫu</button>
+            </div>
+            <div id="panel-overview" class="result-panel active"></div>
+            <div id="panel-errors" class="result-panel"></div>
+            <div id="panel-corrected" class="result-panel"></div>
+            <div id="panel-translation" class="result-panel"></div>
+            <div id="panel-model" class="result-panel"></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="sidebarOverlay" class="overlay hidden"></div>
+
+  <div id="progressModal" class="modal-backdrop hidden">
+    <div class="modal-card">
+      <div class="modal-head"><div><span class="eyebrow">TIẾN ĐỘ HỌC</span><h2>Web đề mới tháng 7</h2></div><button id="closeProgressBtn">×</button></div>
+      <div id="progressContent"></div>
+    </div>
+  </div>
+
+  <div id="formHelpModal" class="modal-backdrop hidden">
+    <div class="modal-card large">
+      <div class="modal-head"><div><span class="eyebrow">TASK 2</span><h2>Nhận biết 4 dạng luận · 3 form</h2></div><button id="closeFormHelpBtn">×</button></div>
+      <div class="form-help-grid">
+        <article><b>Advantage–Disadvantage</b><p>Dấu hiệu: advantages and disadvantages, benefits and drawbacks, positive and negative effects.</p><span>FORM 1</span></article>
+        <article><b>Opinion</b><p>Dấu hiệu: agree or disagree, to what extent, what is your opinion.</p><span>FORM 2</span></article>
+        <article><b>Discussion</b><p>Dấu hiệu: discuss both views, discuss both sides and give your opinion.</p><span>FORM 2</span></article>
+        <article><b>Problem–Solution</b><p>Dấu hiệu: causes, problems, effects, solutions, what can be done.</p><span>FORM 3</span></article>
+      </div>
+    </div>
+  </div>
+
+  <script src="data.js?v=1"></script>
+  <script src="app.js?v=1"></script>
+</body>
+</html>
